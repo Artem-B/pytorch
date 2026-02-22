@@ -18,11 +18,6 @@ namespace at::native {
 
 namespace {
 
-// offset_t is used as a CUB iterator for segmented sort offsets.
-// Both operators must be __host__ __device__ because with CCCL >= 3.1,
-// CUB's dispatch code (dispatch_radix_sort.cuh) may call operator[] and
-// operator+= from CUB_RUNTIME_FUNCTION context, which compiles as __host__
-// when using clang.
 struct offset_t {
   int stride;
   int begin;
